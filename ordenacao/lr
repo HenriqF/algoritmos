@@ -1,0 +1,5 @@
+[main]
+    run: gcc merge.c -o merge
+    run: .\merge
+    run: del merge.exe
+    end
