@@ -7,8 +7,12 @@ typedef struct no{
 } no;
 
 
-void mostrar(no lista){
-    no* next = &lista;
+void mostrar(no* lista){
+    if (lista == NULL){
+        return;
+    }
+
+    no* next = lista;
     while (next != NULL){
         printf("%d -> ", next->valor);
         next = next->prox;
@@ -52,18 +56,43 @@ void matar(no* lista, int profundidade){
     }
 }
 
-int main(){
-    no lista = (no){0, NULL};
+void inverter(no** lista){
+    no* temp = NULL;
+    no* resto = NULL;
 
+    while((*lista) != NULL){
+        resto = (*lista)->prox;
+        (*lista)->prox = temp;
+        temp = (*lista);
+        (*lista) = resto;
+    }
+
+    (*lista) = temp;
+
+}
+
+no* criar(int valor){
+    no* novo = malloc(sizeof(no));
+    novo->valor = valor;
+    novo->prox = NULL;
+
+    return novo;
+}
+
+int main(){
+    no* lista = criar(0);
     for (int i = 1; i <= 10; i++){
-        adicionar(&lista, i);
+        adicionar(lista, i);
     }
 
     mostrar(lista);
 
-    matar(&lista, 5);
+    matar(lista, 5);
 
     mostrar(lista);
 
+    inverter(&lista);
+
+    mostrar(lista);
     return 0;
 }
