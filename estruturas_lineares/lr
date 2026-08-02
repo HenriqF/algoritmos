@@ -1,3 +1,5 @@
 [main]
-    run: gcc encadeada.c -o e
+    run: gcc stack.c -o e -Wall -Wextra
+    run: .\e
+    run: del e.exe
     end
